@@ -1,0 +1,53 @@
+.timeline {
+  position: relative;
+  padding-left: 64px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(var(--line), var(--silver-dim), var(--line));
+}
+
+.stage {
+  position: relative;
+  margin-bottom: 56px;
+}
+
+.stage:last-child {
+  margin-bottom: 0;
+}
+
+.stage-mark {
+  position: absolute;
+  left: -64px;
+  top: 2px;
+  width: 40px;
+  height: 40px;
+}
+
+.stage h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  color: var(--silver-bright);
+  margin-bottom: 4px;
+}
+
+.stage .role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--silver-dim);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.stage p {
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 600px;
+}

@@ -1,0 +1,61 @@
+:root {
+  --bg: #08090a;
+  --surface: #131417;
+  --surface-2: #1b1d21;
+  --line: #2a2d33;
+  --silver-bright: #f1f2f4;
+  --silver: #b8bec7;
+  --silver-dim: #7b818c;
+  --shine: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--silver);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--silver);
+  color: #000;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.012) 0px,
+    rgba(255, 255, 255, 0.012) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--silver-bright);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

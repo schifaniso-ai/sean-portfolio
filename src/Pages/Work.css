@@ -1,0 +1,84 @@
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.work-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 30px;
+  background: var(--surface);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.work-card:hover {
+  border-color: var(--silver-dim);
+  transform: translateY(-4px);
+  background: var(--surface-2);
+}
+
+.work-card .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--silver-dim);
+}
+
+.work-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  color: var(--silver-bright);
+  margin: 16px 0 10px;
+}
+
+.work-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--silver-dim);
+  flex-grow: 1;
+}
+
+.work-card .tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.work-card .tags span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--silver-dim);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 100px;
+}
+
+.work-card .view-project {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--silver-dim);
+  margin-top: 16px;
+  transition: color 0.3s ease;
+}
+
+.work-card:hover .view-project {
+  color: var(--silver-bright);
+}
+
+
+
+@media (max-width: 800px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+}

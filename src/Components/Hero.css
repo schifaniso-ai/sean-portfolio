@@ -1,0 +1,86 @@
+header.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 140px 32px 80px;
+}
+
+.badge {
+  width: 112px;
+  height: 112px;
+  margin-bottom: 36px;
+  filter: drop-shadow(0 0 26px rgba(184, 190, 199, 0.18));
+  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+h1.name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(44px, 8vw, 92px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  background: linear-gradient(
+    100deg,
+    var(--silver) 20%,
+    var(--shine) 45%,
+    var(--silver) 60%,
+    var(--silver-bright) 75%,
+    var(--silver) 90%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s,
+    shine 5.5s ease-in-out 1.2s infinite;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin-top: 22px;
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: var(--silver-dim);
+  max-width: 600px;
+  font-weight: 400;
+  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s;
+}
+
+.tagline strong {
+  color: var(--silver-bright);
+  font-weight: 500;
+}
+
+.hero-meta {
+  margin-top: 38px;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s;
+}
+
+.hero-meta span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--silver-dim);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 100px;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(var(--silver-dim), transparent);
+  animation: pulse 2s ease-in-out infinite;
+}
