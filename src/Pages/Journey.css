@@ -1,53 +1,176 @@
-.timeline {
+.journey-section {
+  padding: 140px 0;
+  border-top: 1px solid var(--line);
   position: relative;
-  padding-left: 64px;
 }
 
-.timeline::before {
-  content: "";
+.journey-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.journey-header {
+  margin-bottom: 80px;
+}
+
+.journey-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.journey-heading {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 42px);
+  color: var(--silver-bright);
+  margin-top: 14px;
+  max-width: 640px;
+  line-height: 1.15;
+}
+
+.journey-heading .split-line {
+  display: block;
+  overflow: hidden;
+}
+
+.journey-heading .split-word {
+  display: inline-block;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 80px;
+}
+
+.timeline-line {
   position: absolute;
   left: 19px;
-  top: 8px;
-  bottom: 8px;
+  top: 0;
+  bottom: 0;
   width: 1px;
-  background: linear-gradient(var(--line), var(--silver-dim), var(--line));
+  background: rgba(42, 45, 51, 0.4);
+  overflow: hidden;
+}
+
+.timeline-line-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--accent) 0%,
+    rgba(0, 212, 255, 0.4) 50%,
+    var(--accent) 100%
+  );
+  transform-origin: top center;
 }
 
 .stage {
   position: relative;
-  margin-bottom: 56px;
+  margin-bottom: 64px;
 }
 
 .stage:last-child {
   margin-bottom: 0;
 }
 
-.stage-mark {
+.stage-marker {
   position: absolute;
-  left: -64px;
-  top: 2px;
+  left: -80px;
+  top: 0;
   width: 40px;
   height: 40px;
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.3));
+  z-index: 2;
 }
 
-.stage h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 19px;
-  color: var(--silver-bright);
-  margin-bottom: 4px;
+.stage-content {
+  padding: 4px 0;
 }
 
-.stage .role {
+.stage-role {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  color: var(--silver-dim);
-  letter-spacing: 0.04em;
-  margin-bottom: 12px;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   display: block;
+  margin-bottom: 8px;
 }
 
-.stage p {
+.stage-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--silver-bright);
+  margin-bottom: 12px;
+}
+
+.stage-description {
   font-size: 15px;
-  line-height: 1.75;
-  max-width: 600px;
+  line-height: 1.8;
+  color: var(--silver);
+  max-width: 560px;
+}
+
+@media (max-width: 768px) {
+  .journey-section {
+    padding: 100px 0;
+  }
+
+  .timeline {
+    padding-left: 60px;
+  }
+
+  .stage-marker {
+    left: -60px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .timeline-line {
+    left: 15px;
+  }
+
+  .journey-header {
+    margin-bottom: 56px;
+  }
+
+  .stage {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journey-section {
+    padding: 80px 0;
+  }
+
+  .journey-container {
+    padding: 0 20px;
+  }
+
+  .timeline {
+    padding-left: 48px;
+  }
+
+  .stage-marker {
+    left: -48px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .timeline-line {
+    left: 13px;
+  }
+
+  .stage-title {
+    font-size: 18px;
+  }
+
+  .stage-description {
+    font-size: 14px;
+  }
 }

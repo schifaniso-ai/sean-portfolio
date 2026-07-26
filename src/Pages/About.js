@@ -1,16 +1,49 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { animateAbout } from '../animations/about';
+import useReducedMotion from '../hooks/useReducedMotion';
 import './About.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const FACTS = [
+  { key: 'ROLE', value: 'Software Developer' },
+  { key: 'EXPERIENCE', value: '1 Year, Professional' },
+  { key: 'BACKGROUND', value: 'Product Design & Digital Marketing' },
+  { key: 'LEADERSHIP', value: 'Head Boy \u00B7 Junior Council' },
+  { key: 'MENTORSHIP', value: 'Uncommon.org' },
+  { key: 'STATUS', value: 'Open to opportunities' },
+];
+
 export default function About() {
+  const scopeRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      const ctx = animateAbout(scopeRef.current, reducedMotion);
+      return () => ctx.revert();
+    },
+    { scope: scopeRef }
+  );
+
   return (
-    <section id="about">
-      <div className="wrap">
-        <div className="section-head reveal">
-          <div className="eyebrow">About</div>
-          <h2 className="title">Not a typical junior developer.</h2>
+    <section id="about" className="about-section" ref={scopeRef}>
+      <div className="about-container">
+        <div className="about-header">
+          <div className="about-eyebrow eyebrow">
+            <span className="eyebrow-line" />
+            <span className="eyebrow-text">About</span>
+          </div>
+          <h2 className="about-heading title">
+            Not a typical junior developer.
+          </h2>
         </div>
+
         <div className="about-grid">
-          <div className="reveal">
+          <div className="about-text">
             <p>
               Most developers arrive at code first. Sean arrived through design and marketing
               &mdash; learning how people perceive a product before he ever learned how to build
@@ -32,31 +65,15 @@ export default function About() {
               is the oldest one.
             </p>
           </div>
-          <div className="facts reveal">
-            <div className="row">
-              <span className="k">ROLE</span>
-              <span className="v">Software Developer</span>
-            </div>
-            <div className="row">
-              <span className="k">EXPERIENCE</span>
-              <span className="v">1 Year, Professional</span>
-            </div>
-            <div className="row">
-              <span className="k">BACKGROUND</span>
-              <span className="v">Product Design & Digital Marketing</span>
-            </div>
-            <div className="row">
-              <span className="k">LEADERSHIP</span>
-              <span className="v">Head Boy &middot; Junior Council</span>
-            </div>
-            <div className="row">
-              <span className="k">MENTORSHIP</span>
-              <span className="v">Uncommon.org</span>
-            </div>
-            <div className="row">
-              <span className="k">STATUS</span>
-              <span className="v">Open to opportunities</span>
-            </div>
+
+          <div className="about-facts">
+            <div className="facts-glow" />
+            {FACTS.map(({ key, value }) => (
+              <div className="fact-row" key={key}>
+                <span className="fact-key">{key}</span>
+                <span className="fact-value">{value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
