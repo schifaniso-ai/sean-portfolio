@@ -1,4 +1,4 @@
-header.hero {
+.hero {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,71 +7,146 @@ header.hero {
   text-align: center;
   position: relative;
   padding: 140px 32px 80px;
+  overflow: hidden;
 }
 
-.badge {
-  width: 112px;
-  height: 112px;
-  margin-bottom: 36px;
-  filter: drop-shadow(0 0 26px rgba(184, 190, 199, 0.18));
-  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  animation: grainDrift 8s linear infinite;
 }
 
-h1.name {
+@keyframes grainDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-badge {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 0 40px rgba(0, 212, 255, 0.2));
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.hero-badge svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-headline {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: clamp(44px, 8vw, 92px);
-  line-height: 0.98;
-  letter-spacing: -0.01em;
-  background: linear-gradient(
-    100deg,
-    var(--silver) 20%,
-    var(--shine) 45%,
-    var(--silver) 60%,
-    var(--silver-bright) 75%,
-    var(--silver) 90%
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation:
-    rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.1s,
-    shine 5.5s ease-in-out 1.2s infinite;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+  color: var(--silver-bright);
+  max-width: 800px;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-.tagline {
-  margin-top: 22px;
-  font-size: clamp(15px, 2.2vw, 19px);
+.hero-headline .split-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-headline .split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.hero-tagline {
+  margin-top: 28px;
+  font-size: clamp(15px, 2vw, 18px);
   color: var(--silver-dim);
-  max-width: 600px;
+  max-width: 560px;
   font-weight: 400;
-  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s;
+  line-height: 1.7;
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-.tagline strong {
+.hero-tagline strong {
   color: var(--silver-bright);
   font-weight: 500;
 }
 
-.hero-meta {
-  margin-top: 38px;
+.hero-badges {
+  margin-top: 40px;
   display: flex;
-  gap: 28px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
-  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both 0.3s;
 }
 
-.hero-meta span {
+.hero-pill {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 11px;
+  letter-spacing: 0.1em;
   color: var(--silver-dim);
   border: 1px solid var(--line);
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 100px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+  will-change: transform, opacity;
+}
+
+.hero-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hero-cta {
+  margin-top: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--accent), #00a8cc);
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
+.hero-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.35);
+}
+
+.hero-cta:active {
+  transform: scale(0.97);
+}
+
+.hero-cta svg {
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover svg {
+  transform: translateY(3px);
 }
 
 .scroll-cue {
@@ -79,8 +154,58 @@ h1.name {
   bottom: 36px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.scroll-cue-line {
   width: 1px;
   height: 50px;
-  background: linear-gradient(var(--silver-dim), transparent);
-  animation: pulse 2s ease-in-out infinite;
+  background: linear-gradient(var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.2; transform: scaleY(0.6); transform-origin: top; }
+  50% { opacity: 0.8; transform: scaleY(1); transform-origin: top; }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 24px 60px;
+  }
+
+  .hero-badge {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 28px;
+  }
+
+  .hero-badges {
+    gap: 8px;
+  }
+
+  .hero-pill {
+    font-size: 10px;
+    padding: 6px 14px;
+  }
+
+  .hero-cta {
+    margin-top: 36px;
+    padding: 12px 28px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 100px 20px 48px;
+  }
+
+  .hero-badge {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 24px;
+  }
 }

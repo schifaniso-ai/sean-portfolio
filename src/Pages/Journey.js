@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { animateJourney } from '../animations/journey';
+import useReducedMotion from '../hooks/useReducedMotion';
 import './Journey.css';
 
-function StageMark() {
-  return (
-    <svg className="stage-mark" viewBox="0 0 40 40" fill="none">
-      <path d="M20 4 L34 12 V28 L20 36 L6 28 V12 Z" stroke="url(#gs)" strokeWidth="1.5" />
-      <circle cx="20" cy="20" r="3.5" fill="url(#gs)" />
-    </svg>
-  );
-}
+gsap.registerPlugin(ScrollTrigger);
 
-const stages = [
+const STAGES = [
   {
     role: 'HIGH SCHOOL',
     title: 'Head Boy',
@@ -37,21 +35,63 @@ const stages = [
   },
 ];
 
-export default function Journey() {
+function StageMarker() {
   return (
-    <section id="journey">
-      <div className="wrap">
-        <div className="section-head reveal">
-          <div className="eyebrow">Formation</div>
-          <h2 className="title">The leadership that came before the code.</h2>
+    <svg className="stage-marker" viewBox="0 0 40 40" fill="none">
+      <path
+        d="M20 4 L34 12 V28 L20 36 L6 28 V12 Z"
+        stroke="url(#stageGrad)"
+        strokeWidth="1.5"
+      />
+      <circle cx="20" cy="20" r="3.5" fill="url(#stageGrad)" />
+      <defs>
+        <linearGradient id="stageGrad" x1="0" y1="0" x2="40" y2="40">
+          <stop stopColor="#00D4FF" />
+          <stop offset="1" stopColor="#f1f2f4" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
+export default function Journey() {
+  const scopeRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      const ctx = animateJourney(scopeRef.current, reducedMotion);
+      return () => ctx.revert();
+    },
+    { scope: scopeRef }
+  );
+
+  return (
+    <section id="journey" className="journey-section" ref={scopeRef}>
+      <div className="journey-container">
+        <div className="journey-header">
+          <div className="journey-eyebrow eyebrow">
+            <span className="eyebrow-line" />
+            <span className="eyebrow-text">Formation</span>
+          </div>
+          <h2 className="journey-heading title">
+            The leadership that came before the code.
+          </h2>
         </div>
-        <div className="timeline reveal">
-          {stages.map((stage, i) => (
+
+        <div className="timeline">
+          <div className="timeline-line">
+            <div className="timeline-line-fill" />
+          </div>
+
+          {STAGES.map((stage, i) => (
             <div className="stage" key={i}>
-              <StageMark />
-              <span className="role">{stage.role}</span>
-              <h3>{stage.title}</h3>
-              <p>{stage.description}</p>
+              <StageMarker />
+              <div className="stage-content">
+                <span className="stage-role">{stage.role}</span>
+                <h3 className="stage-title">{stage.title}</h3>
+                <p className="stage-description">{stage.description}</p>
+              </div>
             </div>
           ))}
         </div>

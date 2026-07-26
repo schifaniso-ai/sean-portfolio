@@ -1,11 +1,20 @@
-footer {
-  padding: 36px 0 48px;
+.footer {
+  padding: 40px 0 48px;
   text-align: center;
+  position: relative;
 }
 
-footer p {
+.footer-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--line);
+  margin: 0 auto 32px;
+}
+
+.footer-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--silver-dim);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
 }

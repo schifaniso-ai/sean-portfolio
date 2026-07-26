@@ -1,15 +1,21 @@
-nav {
+.nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
-  background: rgba(8, 9, 10, 0.7);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  z-index: 100;
+  background: rgba(8, 9, 10, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(42, 45, 51, 0.5);
+  opacity: 0;
+  will-change: transform, opacity;
 }
 
-nav .wrap {
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,6 +31,12 @@ nav .wrap {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }
 
 .logo svg {
@@ -32,31 +44,77 @@ nav .wrap {
   height: 22px;
 }
 
-nav ul {
+.nav-links {
   list-style: none;
   display: flex;
   gap: 36px;
 }
 
-nav a {
+.nav-links a {
   color: var(--silver-dim);
   text-decoration: none;
   font-size: 13px;
   letter-spacing: 0.04em;
   font-family: 'JetBrains Mono', monospace;
-  transition: color 0.25s ease;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 2px;
 }
 
-nav a:hover,
-nav a:focus-visible {
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
   color: var(--silver-bright);
 }
 
-@media (max-width: 720px) {
-  nav ul {
-    gap: 18px;
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    padding: 0 24px;
   }
-  nav ul li:nth-child(4) {
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-inner {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .nav-links li:nth-child(4) {
     display: none;
   }
 }

@@ -1,41 +1,88 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { animateSkills, initTagHover } from '../animations/skills';
+import useReducedMotion from '../hooks/useReducedMotion';
 import './Skills.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const BUILD_SKILLS = [
+  'HTML / CSS / JavaScript',
+  'Front-End Development',
+  'Responsive Interfaces',
+  'Git & Version Control',
+  'API Integration',
+  'Product Design (UI/UX)',
+  'Wireframing & Prototyping',
+  'Digital Marketing & Content',
+];
+
+const CARRY_SKILLS = [
+  'Team Leadership',
+  'Public Speaking',
+  'Conflict Resolution',
+  'Accountability',
+  'Active Listening',
+  'Adaptability',
+  'Mentorship',
+  'Clear Communication',
+];
+
 export default function Skills() {
+  const scopeRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      const animCtx = animateSkills(scopeRef.current, reducedMotion);
+      const cleanupHover = initTagHover(scopeRef.current);
+      return () => {
+        animCtx.revert();
+        cleanupHover();
+      };
+    },
+    { scope: scopeRef }
+  );
+
   return (
-    <section id="skills">
-      <div className="wrap">
-        <div className="section-head reveal">
-          <div className="eyebrow">Capabilities</div>
-          <h2 className="title">What I build, and what I carry.</h2>
+    <section id="skills" className="skills-section" ref={scopeRef}>
+      <div className="skills-container">
+        <div className="skills-header">
+          <div className="skills-eyebrow eyebrow">
+            <span className="eyebrow-line" />
+            <span className="eyebrow-text">Capabilities</span>
+          </div>
+          <h2 className="skills-heading title">
+            What I build, and what I carry.
+          </h2>
         </div>
-        <div className="skills-grid reveal">
+
+        <div className="skills-grid">
           <div className="skill-col">
-            <h3>What I Build</h3>
-            <div className="sub">Technical & design capability</div>
+            <h3 className="skill-col-title">What I Build</h3>
+            <p className="skill-col-sub">Technical & design capability</p>
             <div className="tag-list">
-              <span>HTML / CSS / JavaScript</span>
-              <span>Front-End Development</span>
-              <span>Responsive Interfaces</span>
-              <span>Git & Version Control</span>
-              <span>API Integration</span>
-              <span>Product Design (UI/UX)</span>
-              <span>Wireframing & Prototyping</span>
-              <span>Digital Marketing & Content</span>
+              {BUILD_SKILLS.map((skill) => (
+                <div className="skill-tag" key={skill}>
+                  <span className="skill-tag-spotlight" />
+                  <span className="skill-tag-text">{skill}</span>
+                </div>
+              ))}
             </div>
           </div>
+
           <div className="skill-col">
-            <h3>What I Carry</h3>
-            <div className="sub">Leadership & soft skills</div>
+            <h3 className="skill-col-title">What I Carry</h3>
+            <p className="skill-col-sub">Leadership & soft skills</p>
             <div className="tag-list">
-              <span>Team Leadership</span>
-              <span>Public Speaking</span>
-              <span>Conflict Resolution</span>
-              <span>Accountability</span>
-              <span>Active Listening</span>
-              <span>Adaptability</span>
-              <span>Mentorship</span>
-              <span>Clear Communication</span>
+              {CARRY_SKILLS.map((skill) => (
+                <div className="skill-tag" key={skill}>
+                  <span className="skill-tag-spotlight" />
+                  <span className="skill-tag-text">{skill}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

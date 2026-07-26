@@ -7,6 +7,9 @@
   --silver: #b8bec7;
   --silver-dim: #7b818c;
   --shine: #ffffff;
+  --accent: #00D4FF;
+  --accent-dim: rgba(0, 212, 255, 0.15);
+  --accent-glow: rgba(0, 212, 255, 0.4);
 }
 
 * {
@@ -16,19 +19,33 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 body {
   background: var(--bg);
   color: var(--silver);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: var(--silver);
-  color: #000;
+  background: var(--accent);
+  color: var(--bg);
 }
 
 body::before {
@@ -39,23 +56,41 @@ body::before {
   z-index: 0;
   background: repeating-linear-gradient(
     115deg,
-    rgba(255, 255, 255, 0.012) 0px,
-    rgba(255, 255, 255, 0.012) 1px,
+    rgba(255, 255, 255, 0.008) 0px,
+    rgba(255, 255, 255, 0.008) 1px,
     transparent 1px,
     transparent 3px
   );
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--silver-bright);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-grain {
     animation: none !important;
-    transition: none !important;
+  }
+
+  .scroll-cue-line {
+    animation: none !important;
+    opacity: 0.5;
   }
 }
