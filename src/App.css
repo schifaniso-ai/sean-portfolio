@@ -35,7 +35,7 @@ section {
 }
 
 h2.title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'BBH Bartle', sans-serif;
   font-weight: 700;
   font-size: clamp(28px, 4vw, 42px);
   color: var(--silver-bright);

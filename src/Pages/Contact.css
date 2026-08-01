@@ -32,7 +32,7 @@
 }
 
 .contact-heading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'BBH Bartle', sans-serif;
   font-weight: 700;
   font-size: clamp(30px, 5vw, 48px);
   color: var(--silver-bright);

@@ -16,11 +16,11 @@ export function animateHeroEntrance(scope, reducedMotion) {
     const headline = scope.querySelector('.hero-headline');
     const tagline = scope.querySelector('.hero-tagline');
     const badges = scope.querySelectorAll('.hero-pill');
-    const cta = scope.querySelector('.hero-cta');
+    const cta = scope.querySelectorAll('.hero-cta');
     const scrollCue = scope.querySelector('.scroll-cue');
 
     if (reducedMotion) {
-      gsap.set([nav, badge, headline, tagline, ...badges, cta, scrollCue], {
+      gsap.set([nav, badge, headline, tagline, ...badges, ...cta, scrollCue], {
         opacity: 1,
         y: 0,
         scale: 1,
@@ -34,9 +34,8 @@ export function animateHeroEntrance(scope, reducedMotion) {
     let headlineSplit = null;
     if (headline) {
       headlineSplit = new SplitText(headline, {
-        type: 'lines,chars',
+        type: 'lines',
         linesClass: 'split-line',
-        charsClass: 'split-char',
       });
     }
 
@@ -100,16 +99,6 @@ export function animateHeroEntrance(scope, reducedMotion) {
         },
         0.3
       );
-
-      tl.fromTo(headlineSplit.chars,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: DURATION.FAST,
-          stagger: 0.01,
-        },
-        0.4
-      );
     }
 
     if (tagline) {
@@ -136,7 +125,7 @@ export function animateHeroEntrance(scope, reducedMotion) {
       }, 0.9);
     }
 
-    if (cta) {
+    if (cta.length) {
       tl.fromTo(cta,
         { opacity: 0, scale: 0.85, y: 15 },
         {
@@ -145,6 +134,7 @@ export function animateHeroEntrance(scope, reducedMotion) {
           y: 0,
           duration: DURATION.NORMAL,
           ease: EASE.REVEAL,
+          stagger: STAGGER.MEDIUM,
         },
         1.1
       );
@@ -216,6 +206,62 @@ export function animateHeroScrollOut(scope) {
           end: '15% top',
           scrub: 1,
         },
+      });
+    }
+  }, scope);
+
+  return ctx;
+}
+
+export function animateHeroMicroInteractions(scope, reducedMotion) {
+  const ctx = gsap.context(() => {
+    if (reducedMotion) return;
+
+    const badge = scope.querySelector('.hero-badge');
+    const globeInner = scope.querySelector('.hero-globe-inner');
+    const ctaPrimary = scope.querySelector('.hero-cta');
+
+    if (badge) {
+      gsap.to(badge, {
+        y: -8,
+        duration: 3.2,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: 1.6,
+      });
+
+      gsap.to(badge, {
+        filter: 'drop-shadow(0 0 60px rgba(0, 212, 255, 0.35))',
+        duration: 2.6,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: 1.6,
+      });
+    }
+
+    if (globeInner) {
+      gsap.to(globeInner, {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: scope,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    }
+
+    if (ctaPrimary) {
+      gsap.to(ctaPrimary, {
+        boxShadow: '0 0 50px rgba(0, 212, 255, 0.35)',
+        duration: 2.2,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: 1.8,
       });
     }
   }, scope);
