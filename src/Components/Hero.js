@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { animateHeroEntrance, animateHeroScrollOut } from '../animations/hero';
+import { animateHeroEntrance, animateHeroScrollOut, animateHeroMicroInteractions } from '../animations/hero';
 import useReducedMotion from '../hooks/useReducedMotion';
-import Particles from './Particles';
+import LetterGlitch from './LetterGlitch';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,10 +17,12 @@ export default function Hero() {
     () => {
       const entranceCtx = animateHeroEntrance(scopeRef.current, reducedMotion);
       const scrollCtx = animateHeroScrollOut(scopeRef.current);
+      const microCtx = animateHeroMicroInteractions(scopeRef.current, reducedMotion);
 
       return () => {
         entranceCtx?.revert();
         scrollCtx?.revert();
+        microCtx?.revert();
       };
     },
     { scope: scopeRef }
@@ -28,7 +30,6 @@ export default function Hero() {
 
   return (
     <header className="hero" ref={scopeRef}>
-      <Particles />
       <div className="hero-grain" />
 
       <div className="hero-content">
@@ -57,13 +58,13 @@ export default function Hero() {
         </div>
 
         <h1 className="hero-headline">
-          Sean <br />Chifaniso
+          <span className="hero-headline-line">Sean</span>
+          <span className="hero-headline-line">Junior</span>
+          <span className="hero-headline-line">Chifaniso</span>
         </h1>
 
         <p className="hero-tagline">
-          Software developer with <strong>one year of hands-on build experience</strong>,
-          shaped first by <strong>product design and digital marketing</strong>, and forged
-          long before that in rooms where leadership was earned, not given.
+          Software developer with <strong>one year of hands-on build experience</strong>,shaped first by product design and digital marketing, and forged long before that in rooms where leadership was earned, not given.
         </p>
 
         <div className="hero-badges">
@@ -73,17 +74,34 @@ export default function Hero() {
           <span className="hero-pill">MARKETING-TRAINED</span>
         </div>
 
-        <a href="#about" className="hero-cta">
-          <span>Explore My Work</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </a>
+        <div className="hero-cta-row">
+          <a href="#about" className="hero-cta">
+            <span>Explore My Work</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+          <a href="#contact" className="hero-cta hero-cta--secondary">
+            <span>Get in Touch</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-glitch">
+        {!reducedMotion && (
+          <LetterGlitch
+            glitchColors={['#00D4FF', '#f1f2f4', '#7b818c']}
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
+          />
+        )}
+        <div className="hero-overlay" />
       </div>
 
       <div className="scroll-cue">
         <div className="scroll-cue-line" />
-      </div>
-    </header>
+      </div>    </header>
   );
 }
