@@ -4,8 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animateHeroEntrance, animateHeroScrollOut, animateHeroMicroInteractions } from '../animations/hero';
 import useReducedMotion from '../hooks/useReducedMotion';
-import Particles from './Particles';
-import Globe from './Globe';
+import LetterGlitch from './LetterGlitch';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -31,7 +30,6 @@ export default function Hero() {
 
   return (
     <header className="hero" ref={scopeRef}>
-      <Particles />
       <div className="hero-grain" />
 
       <div className="hero-content">
@@ -89,21 +87,21 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hero-globe">
-        <div className="hero-globe-inner">
-          <Globe
-            size={520}
-            dotColor="rgba(0, 212, 255, ALPHA)"
-            arcColor="rgba(0, 212, 255, 0.3)"
-            markerColor="rgba(0, 220, 255, 1)"
-            autoRotateSpeed={0.0015}
+      <div className="hero-glitch">
+        {!reducedMotion && (
+          <LetterGlitch
+            glitchColors={['#00D4FF', '#f1f2f4', '#7b818c']}
+            glitchSpeed={50}
+            centerVignette={true}
+            outerVignette={false}
+            smooth={true}
           />
-        </div>
+        )}
+        <div className="hero-overlay" />
       </div>
 
       <div className="scroll-cue">
         <div className="scroll-cue-line" />
-      </div>
-    </header>
+      </div>    </header>
   );
 }

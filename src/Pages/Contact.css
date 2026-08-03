@@ -32,7 +32,7 @@
 }
 
 .contact-heading {
-  font-family: 'BBH Bartle', sans-serif;
+  font-family: 'Black Ops One', cursive;
   font-weight: 700;
   font-size: clamp(30px, 5vw, 48px);
   color: var(--silver-bright);

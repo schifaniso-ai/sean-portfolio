@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { animateAbout } from '../animations/about';
 import useReducedMotion from '../hooks/useReducedMotion';
+import ElectricBorder from '../Components/ElectricBorder';
 import './About.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,6 +21,18 @@ const FACTS = [
 export default function About() {
   const scopeRef = useRef(null);
   const reducedMotion = useReducedMotion();
+
+  const factsPanel = (
+    <div className="about-facts">
+      <div className="facts-glow" />
+      {FACTS.map(({ key, value }) => (
+        <div className="fact-row" key={key}>
+          <span className="fact-key">{key}</span>
+          <span className="fact-value">{value}</span>
+        </div>
+      ))}
+    </div>
+  );
 
   useGSAP(
     () => {
@@ -66,15 +79,13 @@ export default function About() {
             </p>
           </div>
 
-          <div className="about-facts">
-            <div className="facts-glow" />
-            {FACTS.map(({ key, value }) => (
-              <div className="fact-row" key={key}>
-                <span className="fact-key">{key}</span>
-                <span className="fact-value">{value}</span>
-              </div>
-            ))}
-          </div>
+          {reducedMotion ? (
+            factsPanel
+          ) : (
+            <ElectricBorder color="#00D4FF" speed={1} chaos={0.12} borderRadius={8}>
+              {factsPanel}
+            </ElectricBorder>
+          )}
         </div>
       </div>
     </section>

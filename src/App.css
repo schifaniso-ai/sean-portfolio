@@ -35,7 +35,7 @@ section {
 }
 
 h2.title {
-  font-family: 'BBH Bartle', sans-serif;
+  font-family: 'Black Ops One', cursive;
   font-weight: 700;
   font-size: clamp(28px, 4vw, 42px);
   color: var(--silver-bright);
