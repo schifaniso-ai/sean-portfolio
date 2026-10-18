@@ -1,9 +1,5 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
+import { gsap, ScrollTrigger, SplitText } from '../lib/gsap';
 import { DURATION, STAGGER, EASE } from './tokens';
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export function animateCertificates(scope, reducedMotion) {
   const ctx = gsap.context(() => {

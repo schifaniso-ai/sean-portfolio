@@ -1,9 +1,5 @@
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger, SplitText } from '../lib/gsap';
 import { DURATION, STAGGER, EASE } from './tokens';
-
-gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export function animateHeroEntrance(scope, reducedMotion) {
   const ctx = gsap.context(() => {

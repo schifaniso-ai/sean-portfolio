@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { animateContact, initMagneticButtons } from '../animations/contact';
 import useReducedMotion from '../hooks/useReducedMotion';
 import './Contact.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const scopeRef = useRef(null);

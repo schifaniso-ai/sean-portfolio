@@ -1,13 +1,10 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { animateHeroEntrance, animateHeroScrollOut, animateHeroMicroInteractions } from '../animations/hero';
 import useReducedMotion from '../hooks/useReducedMotion';
-import LetterGlitch from './LetterGlitch';
+import LetterGlitch from '../components/effects/LetterGlitch';
 import './Hero.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const scopeRef = useRef(null);

@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { animateJourney } from '../animations/journey';
 import useReducedMotion from '../hooks/useReducedMotion';
 import './Journey.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const STAGES = [
   {

@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { animateSkills, initTagHover } from '../animations/skills';
 import useReducedMotion from '../hooks/useReducedMotion';
 import './Skills.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const BUILD_SKILLS = [
   'HTML / CSS / JavaScript',

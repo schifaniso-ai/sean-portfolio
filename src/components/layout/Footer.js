@@ -1,11 +1,8 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import useReducedMotion from '../hooks/useReducedMotion';
+import { gsap, ScrollTrigger } from '../../lib/gsap';
+import useReducedMotion from '../../hooks/useReducedMotion';
 import './Footer.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const footerRef = useRef(null);

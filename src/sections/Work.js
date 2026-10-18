@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '../lib/gsap';
 import { animateProjects, initCardHover } from '../animations/projects';
 import useReducedMotion from '../hooks/useReducedMotion';
 import './Work.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {

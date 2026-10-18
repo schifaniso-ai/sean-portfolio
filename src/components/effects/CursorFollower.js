@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-import useReducedMotion from '../hooks/useReducedMotion';
+import { gsap } from '../../lib/gsap';
+import useReducedMotion from '../../hooks/useReducedMotion';
 import './CursorFollower.css';
 
 export default function CursorFollower() {
