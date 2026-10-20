@@ -63,8 +63,8 @@ function Home() {
           </div>
           <div style={{ marginTop: '64px', textAlign: 'center' }}>
             <Link to="/work" className="hero-cta">
-              <span>Explore My Work</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <span>View More Projects</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path
                   d="M8 3v10M3 8l5 5 5-5"
                   stroke="currentColor"
