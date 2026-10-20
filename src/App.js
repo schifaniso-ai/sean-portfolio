@@ -1,17 +1,15 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './lib/gsap';
 import useLenis from './utils/lenis';
 import Nav from './components/layout/Nav';
-import Hero from './sections/Hero';
-import About from './sections/About';
-import Journey from './sections/Journey';
-import Skills from './sections/Skills';
-import Work from './sections/Work';
-import Certificates from './sections/Certificates';
-import Contact from './sections/Contact';
+import Home from './pages/Home';
+import Work from './pages/Work';
+import Contact from './pages/Contact';
 import Footer from './components/layout/Footer';
 import CursorFollower from './components/effects/CursorFollower';
 import ScrollProgress from './components/effects/ScrollProgress';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -19,17 +17,16 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <CursorFollower />
       <ScrollProgress />
       <Nav />
       <main>
-        <Hero />
-        <About />
-        <Journey />
-        <Skills />
-        <Work />
-        <Certificates />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
       <Footer />
     </>

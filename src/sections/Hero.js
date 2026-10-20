@@ -61,7 +61,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-tagline">
-          Software developer with <strong>one year of hands-on build experience</strong>,shaped first by product design and digital marketing, and forged long before that in rooms where leadership was earned, not given.
+          Software developer with <strong>one year of hands-on build experience</strong>, shaped first by product design and digital marketing, and forged long before that in rooms where leadership was earned, not given.
         </p>
 
         <div className="hero-badges">
@@ -72,13 +72,13 @@ export default function Hero() {
         </div>
 
         <div className="hero-cta-row">
-          <a href="#about" className="hero-cta">
+          <a href="#featured-work" className="hero-cta">
             <span>Explore My Work</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-          <a href="#contact" className="hero-cta hero-cta--secondary">
+          <a href="/contact" className="hero-cta hero-cta--secondary">
             <span>Get in Touch</span>
           </a>
         </div>
@@ -99,6 +99,7 @@ export default function Hero() {
 
       <div className="scroll-cue">
         <div className="scroll-cue-line" />
-      </div>    </header>
+      </div>
+    </header>
   );
 }

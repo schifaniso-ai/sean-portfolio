@@ -269,16 +269,36 @@
 @media (max-width: 768px) {
   .hero {
     padding: 140px 28px 72px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
   }
 
   .hero-badge {
     width: 88px;
     height: 88px;
     margin-bottom: 32px;
+    align-self: center;
+  }
+
+  .hero-headline {
+    text-align: center;
+    align-self: center;
+  }
+
+  .hero-tagline {
+    text-align: center;
+    align-self: center;
   }
 
   .hero-badges {
     gap: 8px;
+    justify-content: center;
+    align-self: center;
   }
 
   .hero-pill {
@@ -288,6 +308,8 @@
 
   .hero-cta-row {
     margin-top: 44px;
+    justify-content: center;
+    align-self: center;
   }
 
   .hero-cta {
@@ -295,15 +317,19 @@
     font-size: 12px;
   }
 
-  .hero-globe {
-    width: min(340px, 78vw);
-    margin-top: 48px;
+  .hero-glitch {
+    display: none !important;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
     padding: 112px 20px 56px;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
   }
 
   .hero-badge {
@@ -314,10 +340,27 @@
 
   .hero-headline {
     font-size: clamp(28px, 9vw, 38px);
+    text-align: center;
+  }
+
+  .hero-tagline {
+    text-align: center;
+  }
+
+  .hero-badges {
+    justify-content: center;
+  }
+
+  .hero-cta-row {
+    justify-content: center;
   }
 
   .hero-globe {
     width: min(280px, 80vw);
     margin-top: 40px;
+  }
+
+  .hero-glitch {
+    display: none !important;
   }
 }

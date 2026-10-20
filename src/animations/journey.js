@@ -1,4 +1,4 @@
-import { gsap, ScrollTrigger, SplitText } from '../lib/gsap';
+import { gsap, SplitText } from '../lib/gsap';
 import { DURATION, STAGGER, EASE } from './tokens';
 
 export function animateJourney(scope, reducedMotion) {
